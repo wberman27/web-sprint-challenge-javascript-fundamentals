@@ -31,11 +31,11 @@ Both .forEach and .map methods will iterate through each item in an array. .map 
 
 2. Explain the difference between a callback and a higher order function.
 
-A higher order function receives a callback function as an argument and a callback is put into a higher order function.
+A higher order function receives a callback function as an argument. Callback functions are passed into higher order functions as their arguments.
 
 3. What is closure?
 
-When a function reaches outside of its scope to use a value within its parent's scope.
+When a function reaches outside of its scope to use a value that is defined within the parent scope.
 
 4. Describe the four rules of the 'this' keyword.
 
