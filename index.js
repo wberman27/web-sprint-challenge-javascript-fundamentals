@@ -30,20 +30,21 @@ For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you ma
 
 function summation(num) {
   const numbers = [num];
+  const numCopy = num; //allows unchanging value of num for conditional below
   for(let i=0; i < numbers.length; i++){
-    if(numbers.length < num){
+    if(numbers.length < numCopy){ //add each descending number as long as the length of the array is < 'num'
       numbers.unshift(num-1);
       num = num - 1;
     }
   }
   console.log(numbers)
-  const sum = 0;
-  for(let u=0; u < numbers.length; u++){
-    return sum = sum + numbers[u];
+  let sum = 0;
+  for(let u=0; u < numbers.length; u++){ //iterate through the array and add each number together
+    sum = sum + numbers[u];
   }
   return sum;
 }
-//console.log(summation(4));
+console.log(summation(5));
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
 // Given this zoo data from around the United States, follow the instructions below. Use the specific array methods in the requests below to solve the problems.
@@ -155,8 +156,23 @@ function greeting(first, last){
   
 // 🦁💪 Stretch: If you haven't already, convert your array method callbacks into arrow functions - make sure you comment out this section before you submit your work 🦁💪
  
-
-
+// function animalNames(array){
+//   let displayName = [];
+//   array.forEach((item) => displayName.push(`name: ${item["animal_name"]}, scientific: ${item["scientific_name"]}`));
+//   return displayName;
+// }
+// function lowerCaseNames(array){
+//   const newArray = array.map(item => item["animal_name"].toLowerCase()); 
+//   return newArray;
+// }
+// function lowPopulationAnimals(array){
+//     const newArray2 = array.filter(item => item.population < 5);
+//     return newArray2;
+// }
+// function USApop(array){
+//   const newValue = array.reduce((total,item) => total = total + item.population, 0); 
+//   return newValue;
+// }
 
 
 // 🐴🐴🐴 Topic 3: Prototypes 🐴🐴🐴 //
@@ -213,13 +229,28 @@ console.log(cuboid.surfaceArea()); // 130
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
 //🦄🦄🦄 1. Take your prototypes from above and refactor into class syntax. Please rename your class CuboidMakerTwo and your object cuboidTwo 🦄🦄🦄
 class CuboidMakerTwo{
-
+  constructor(obj){
+    this.length = obj.length;
+    this.width = obj.width;
+    this.height = obj.height;
+  }
+  volume(){
+    return this.length * this.width * this.height;
+  }
+  surfaceArea(){
+    return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
+  }
 }
 
+const cuboidTwo = new CuboidMakerTwo({
+  length: 4,
+  width: 5,
+  height: 5
+});
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-// console.log(cuboidTwo.volume()); // 100
-// console.log(cuboidTwo.surfaceArea()); // 130
+console.log(cuboidTwo.volume()); // 100
+console.log(cuboidTwo.surfaceArea()); // 130
 
 
 
@@ -227,9 +258,26 @@ class CuboidMakerTwo{
 
 // 🦄 💪 Stretch Task: Extend the base class CuboidMaker with a sub class called CubeMaker.  Find out the formulas for volume and surface area for cubes and create those methods using the dimension properties from CuboidMaker.  Test your work by logging out your volume and surface area. 🦄 💪
   
+class CubeMaker extends CuboidMaker{
+  constructor(obj){
+    super(obj);
+  }
+  volume2(){
+    return Math.pow(this.length, 3);
+  }
+  surfaceArea2(){
+    return 6 * (Math.pow(this.length, 2));
+  }
+}
 
+const cube = new CubeMaker({
+  length: 5,
+  width: 5,
+  height: 5
+});
 
-
+console.log(cube.volume2());
+console.log(cube.surfaceArea2());
 
 
   /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
